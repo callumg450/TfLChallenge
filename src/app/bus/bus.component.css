@@ -1,0 +1,28 @@
+
+
+#instructions{
+    text-align: center;
+}
+
+input{
+    margin-left: 44%;
+    margin-bottom: 5px;
+}
+
+#emptyValue{
+    margin-left: 44%;
+}
+
+button{
+    margin-left: 48%;
+    margin-bottom: 5px;
+}
+
+.results{
+    margin-left: 30%;
+}
+
+.panel{
+    margin-left: 15%;
+    width: 50%;
+}

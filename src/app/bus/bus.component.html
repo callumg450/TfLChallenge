@@ -1,0 +1,26 @@
+<div class="jumbotron">
+  <h3>
+    Welcome to Bus Planner!
+  </h3>
+</div>
+
+<!--<p id="instructions">Click here to see the amount of time it will take for Bus {{bus[0].vehicleId}} to reach its station</p>-->
+<input type="text" [(ngModel)]="busId" placeholder="Enter Bus ID"><br>
+
+<button (click)="getBusJourneys()" class="btn btn-primary">Click</button>
+
+<div *ngFor="let info of bus; let i=index" class="results col-md-6">
+  <div *ngIf="i < 6"> <!--Limiter-->
+    <div class="panel panel-default">
+      <div class="panel-body">
+      Time to {{info.stationName}}: {{ info.timeToStation | toMinutes}} minutes
+      </div>
+    </div>
+  </div>
+</div>
+<div id="emptyValue" *ngIf="emptyBusId">
+  <p style="color: red">You need to enter a bus ID</p>
+</div>
+
+<marquee direction="right"><img src="../assets/tflBus.png"></marquee>
+
