@@ -3,12 +3,17 @@
     Welcome to Service Checker!
   </h3>
 </div>
+
   <div class="col-md-6" style="margin-left: 25%;">
+    <ul class="nav nav-pills nav-justified" style="margin-bottom: 5px">
+      <li role="presentation" [ngClass]="{'active' : modeToggle == true}"><a (click)="switchToggles()">National Rail</a></li>
+      <li role="presentation" [ngClass]="{'active' : modeToggle == false}"><a (click)="switchToggles()">Tube</a></li>
+    </ul>
+    <div id="nationalRail" *ngIf="modeToggle == true">
     <div class="panel panel-primary">
       <div class="panel-heading">
-        <h3 class="panel-title">Service Status</h3>
+        <h3 class="panel-title">Nation Rail Service Status</h3>
       </div>
-
       <table class="table table-hover" id="dev-table">
         <thead>
           <tr>
@@ -19,6 +24,36 @@
         </thead>
         <tbody>
           <tr *ngFor="let info  of service">
+             <td>{{info.name}}</td> 
+            <td *ngFor="let x of info.lineStatuses  | goodService: 'x.statusSeverity'">
+              <p *ngIf="x.reason != null; else withoutReason"><a href="{{x.reason}}">{{x.statusSeverityDescription}}</a></p>
+              <ng-template #withoutReason><p>{{x.statusSeverityDescription}}</p></ng-template>
+            </td>
+            <td *ngFor="let x of info.lineStatuses">
+              {{x.statusSeverity }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Tube Status -->
+  <div id="tube" *ngIf="!modeToggle">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Tube Service Status</h3>
+      </div>
+      <table class="table table-hover" id="dev-table">
+        <thead>
+          <tr>
+             <th>Line</th> 
+            <th>Service</th>
+            <th>Service Code</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let info  of tubeService">
              <td>{{info.name}}</td> 
             <td *ngFor="let x of info.lineStatuses  | goodService: 'x.statusSeverity'">
               <p *ngIf="x.reason != null; else withoutReason"><a href="{{x.reason}}">{{x.statusSeverityDescription}}</a></p>

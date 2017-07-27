@@ -11,7 +11,7 @@ export class HTTPTestService{
     busId: string;
 
     GetBusTimesFromApi(){
-        return this._http.get('https://api.tfl.gov.uk/StopPoint/'+ this.busId + '/arrivals')
+        return this._http.get('https://api.tfl.gov.uk/StopPoint/'+ this.busId + '/arrivals?=8eca0376&4a834e43fe8e1dc0b8f4db7d2dfd16b4')
             .catch((error: Response) => {
                 if(error.status === 404)
                     return Observable.throw(new NotFoundError());
@@ -21,6 +21,10 @@ export class HTTPTestService{
 
     GetServiceStatus(){
         return this._http.get('https://api.tfl.gov.uk/line/mode/national-rail/status');
+    }
+
+    GetTubeStatus(){
+        return this._http.get('https://api.tfl.gov.uk/Line/Mode/tube/Status');
     }
 }
 

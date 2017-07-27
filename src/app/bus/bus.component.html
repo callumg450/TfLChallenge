@@ -9,7 +9,7 @@
 
 <button (click)="getBusJourneys()" class="btn btn-primary">Click</button>
 
-<div *ngFor="let info of bus; let i=index" class="results col-md-6">
+<div *ngFor="let info of bus | inOrder; let i=index" class="results col-md-6">
   <div *ngIf="i < 6"> <!--Limiter-->
     <div class="panel panel-default">
       <div class="panel-body">
