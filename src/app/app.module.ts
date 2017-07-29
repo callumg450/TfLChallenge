@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
-import {HTTPTestService} from './app.service';
+import {HTTPTestService} from './services/app.service';
 import { routes } from './navbar/navbar.router';
 
 import {ToMinutes} from './filters/toMinutes.pipe';
@@ -14,6 +14,7 @@ import { BusComponent } from './bus/bus.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { GoodServicePipe } from './filters/good-service.pipe';
+import { AboutComponent } from './about/about.component';
 
 
 
@@ -27,6 +28,7 @@ import { GoodServicePipe } from './filters/good-service.pipe';
     RegistrationComponent,
     NavbarComponent,
     GoodServicePipe,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,

@@ -4,8 +4,8 @@ import {Pipe, PipeTransform} from '@angular/core';
 export class ToMinutes implements PipeTransform{
   transform(value: number) {
     value = Math.round(value / 60);
-    if(value < 1)
-      return "Approaching";
+    if(value <= 1)
+      return "Due";
     return Math.round(value);
   }
   

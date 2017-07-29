@@ -3,12 +3,14 @@
     Welcome to Service Checker!
   </h3>
 </div>
-
+ 
   <div class="col-md-6" style="margin-left: 25%;">
     <ul class="nav nav-pills nav-justified" style="margin-bottom: 5px">
       <li role="presentation" [ngClass]="{'active' : modeToggle == true}"><a (click)="switchToggles()">National Rail</a></li>
       <li role="presentation" [ngClass]="{'active' : modeToggle == false}"><a (click)="switchToggles()">Tube</a></li>
     </ul>
+ 
+    <!-- National Rail Status -->
     <div id="nationalRail" *ngIf="modeToggle == true">
     <div class="panel panel-primary">
       <div class="panel-heading">
@@ -17,14 +19,14 @@
       <table class="table table-hover" id="dev-table">
         <thead>
           <tr>
-             <th>Line</th> 
+             <th>Line</th>
             <th>Service</th>
             <th>Service Code</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let info  of service">
-             <td>{{info.name}}</td> 
+             <td>{{info.name}}</td>
             <td *ngFor="let x of info.lineStatuses  | goodService: 'x.statusSeverity'">
               <p *ngIf="x.reason != null; else withoutReason"><a href="{{x.reason}}">{{x.statusSeverityDescription}}</a></p>
               <ng-template #withoutReason><p>{{x.statusSeverityDescription}}</p></ng-template>
@@ -37,7 +39,7 @@
       </table>
     </div>
   </div>
-
+ 
   <!-- Tube Status -->
   <div id="tube" *ngIf="!modeToggle">
     <div class="panel panel-primary">
@@ -47,23 +49,28 @@
       <table class="table table-hover" id="dev-table">
         <thead>
           <tr>
-             <th>Line</th> 
+            <th>Line</th>
             <th>Service</th>
             <th>Service Code</th>
+            <th>Reason</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let info  of tubeService">
-             <td>{{info.name}}</td> 
+             <td>{{info.name}}</td>
             <td *ngFor="let x of info.lineStatuses  | goodService: 'x.statusSeverity'">
-              <p *ngIf="x.reason != null; else withoutReason"><a href="{{x.reason}}">{{x.statusSeverityDescription}}</a></p>
+              <p *ngIf="x.reason != null; else withoutReason">{{x.statusSeverityDescription}}</p>
               <ng-template #withoutReason><p>{{x.statusSeverityDescription}}</p></ng-template>
             </td>
             <td *ngFor="let x of info.lineStatuses">
               {{x.statusSeverity }}
             </td>
+             <td *ngFor="let x of info.lineStatuses" style="width:275px;">
+              <p *ngIf="x.reason != null; else withoutReason2">{{x.reason}}</p>
+              <ng-template #withoutReason2><p>No delays</p></ng-template>
+            </td>
           </tr>
-        </tbody>
+       </tbody>
       </table>
     </div>
   </div>

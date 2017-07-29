@@ -1,27 +1,68 @@
-
-
 #instructions{
     text-align: center;
 }
-
+ 
 input{
     margin-left: 44%;
     margin-bottom: 5px;
 }
-
+ 
 #emptyValue{
     margin-left: 44%;
+    color: red;
 }
-
+ 
+#panel{
+    border:1px solid black;
+    list-style: none;
+    height: 40px;
+    /* overflow:auto;  */
+ 
+}
+ 
+#timeToStation{
+    float: right;
+    font-weight: bold;
+    padding: 5px;
+}
+ 
+.busIsDue{
+    background-color: #48f442;
+}
+ 
+#stationName{
+    font-weight: bold;
+    padding-left: 1%;
+}
+#lineNumber{
+    font-weight: bold;
+    height:100%;
+    text-align: center;
+    background-color: #c33;
+    color: white;
+    /* display: block; */
+    /* overflow:auto;  */
+    width: 3%;
+    min-width: 38px;
+    float:left;
+    padding-top:1%;
+    /* padding: 8px 0; */
+}
+ 
+#currentTime{
+    font-weight: bold;
+    float: right;
+}
+ 
 button{
-    margin-left: 48%;
+    margin-left: 47%;
     margin-bottom: 5px;
 }
-
+ 
 .results{
     margin-left: 30%;
 }
-
+ 
 .panel{
     margin-left: 15%;
     width: 50%;

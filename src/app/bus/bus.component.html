@@ -3,24 +3,33 @@
     Welcome to Bus Planner!
   </h3>
 </div>
-
-<!--<p id="instructions">Click here to see the amount of time it will take for Bus {{bus[0].vehicleId}} to reach its station</p>-->
-<input type="text" [(ngModel)]="busId" placeholder="Enter Bus ID"><br>
-
-<button (click)="getBusJourneys()" class="btn btn-primary">Click</button>
-
+ 
+<input type="text" [(ngModel)]="busLine" placeholder="Enter Bus ID" (keyup.enter)="getBusNaptanCode()"><br>
+ 
+<button (click)="getBusNaptanCode()" class="btn btn-primary">Click</button>
+ 
 <div *ngFor="let info of bus | inOrder; let i=index" class="results col-md-6">
-  <div *ngIf="i < 6"> <!--Limiter-->
-    <div class="panel panel-default">
-      <div class="panel-body">
-      Time to {{info.stationName}}: {{ info.timeToStation | toMinutes}} minutes
-      </div>
+ 
+  <div *ngIf="i < 1" class="col-md-12" >
+    <div class="col-md-9">
+      <h4>Next service towards...</h4>
     </div>
+    <div class="col-md-3" style="margin-top:10px;">
+      <span id="currentTime">{{currentTime | date:'H:mm'}}</span>
+    </div>
+  </div>
+ 
+  <div *ngIf="i < 6" class="col-md-12"> <!--Limiter-->
+     <li id="panel" [ngClass]="{'busIsDue' : (info.timeToStation /60) <= 1} ">
+      <span id="timeToStation">{{ info.timeToStation | toMinutes}}</span>
+      <span id="stationName">{{info.stationName}}</span>
+       <span id="lineNumber">{{info.lineName}}</span>
+    </li>
   </div>
 </div>
 <div id="emptyValue" *ngIf="emptyBusId">
-  <p style="color: red">You need to enter a bus ID</p>
+  <p>You need to enter a bus ID</p>
 </div>
-
+ 
 <marquee direction="right"><img src="../assets/tflBus.png"></marquee>
 
